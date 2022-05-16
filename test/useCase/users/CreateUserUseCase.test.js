@@ -19,7 +19,7 @@ describe('CreateUserUseCase', () => {
 
   it('should return user without _id and password', async () => {
     const objetoOriginal = new UsersRepository();
-    const objectStub = sinon.stub(objetoOriginal, 'findByObjectID').returns({
+    sinon.stub(objetoOriginal, 'findByObjectID').returns({
       _id: new ObjectId('6280ebc9fca7d95bd295cb30'),
       id: '123',
       first_name: 'João',
@@ -27,6 +27,11 @@ describe('CreateUserUseCase', () => {
       password: '123456',
       email: 'joao@asdfg.br',
     });
+
+    const createUserUseCase = new CreateUserUseCase(
+      new PresenterConsole(),
+      objetoOriginal,
+    );
 
     const createdUser = {
       acknowledged: true,

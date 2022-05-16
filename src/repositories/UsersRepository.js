@@ -38,6 +38,18 @@ class UsersRepository extends DB {
     connection.close();
     return result;
   }
+
+  async update(user_id, userData) {
+    const filter = { id: user_id };
+    const payload = { $set: userData };
+    const connection = await this.dbConnection();
+    const result = await connection
+      .db(process.env.DATABASE)
+      .collection(this.collectionName)
+      .updateOne(filter, payload);
+    connection.close();
+    return result;
+  }
 }
 
 module.exports = { UsersRepository };

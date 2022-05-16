@@ -5,6 +5,9 @@ const {
   CreateUserUseCase,
 } = require('../../../useCase/users/CreateUserUseCase');
 const { ListUserUseCase } = require('../../../useCase/users/ListUserUseCase');
+const {
+  UpdateUserUseCase,
+} = require('../../../useCase/users/UpdateUserUseCase');
 
 module.exports = app => {
   const route = app.route('/users');
@@ -23,12 +26,14 @@ module.exports = app => {
     );
   });
 
-  const routeId = app.route('/transactions/:user_id');
-  routeId.get(verifyToken, (req, res) => {
-    const user_id = req.params.user_id;
-    new FindTransactionsUseCase(
-      new PresenterWEB(res),
-      new UsersRepository(),
-    ).execute(user_id);
+  const routeId = app.route('/users/:id');
+  routeId.patch(verifyToken, (req, res) => {
+    const user_id = req.params.id;
+    const userData = req.body;
+    console.log(user_id, userData);
+    new UpdateUserUseCase(new PresenterWEB(res), new UsersRepository()).execute(
+      user_id,
+      userData,
+    );
   });
 };
