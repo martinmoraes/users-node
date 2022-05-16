@@ -61,12 +61,15 @@ Delete user a given user_id
 ## .ENV
 
 #Servidor back-end
-PORT=3333
+
+- PORT=3333
 
 #MongoDB
-MONGOCONNECT=mongodb://user:user@mongodb:27017/admin
-DATABASE=users
+
+- MONGOCONNECT=mongodb://user:user@mongodb:27017/admin
+- DATABASE=users
 
 #JWT
-PRIVATEKEY=ILIACHALLENGE
-EXPIRES_IN=90h
+
+- PRIVATEKEY=ILIACHALLENGE
+- EXPIRES_IN=90h
