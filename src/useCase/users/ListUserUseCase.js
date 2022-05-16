@@ -14,13 +14,13 @@ class ListUserUseCase {
   }
 
   async fetchUser() {
-    const users = await this.usersRepository.findAll({});
+    const users = await this.usersRepository.findAll();
     const usersReturn = users.map(user => {
       delete user._id;
       delete user.password;
       return user;
     });
-    return users;
+    return usersReturn;
   }
 }
 

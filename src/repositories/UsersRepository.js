@@ -29,6 +29,14 @@ class UsersRepository extends DB {
   }
 
   async findAll(payload) {
+    return await this.find({});
+  }
+
+  async findById(user_id) {
+    return await this.find({ id: user_id });
+  }
+
+  async find(payload) {
     const connection = await this.dbConnection();
     const result = await connection
       .db(process.env.DATABASE)
