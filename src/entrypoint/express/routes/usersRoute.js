@@ -4,6 +4,7 @@ const { UsersRepository } = require('../../../repositories/UsersRepository');
 const {
   CreateUserUseCase,
 } = require('../../../useCase/users/CreateUserUseCase');
+const { ListUserUseCase } = require('../../../useCase/users/ListUserUseCase');
 
 module.exports = app => {
   const route = app.route('/users');
@@ -11,6 +12,13 @@ module.exports = app => {
   route.post(verifyToken, (req, res) => {
     const user = req.body;
     new CreateUserUseCase(new PresenterWEB(res), new UsersRepository()).execute(
+      user,
+    );
+  });
+
+  route.get(verifyToken, (req, res) => {
+    const user = req.body;
+    new ListUserUseCase(new PresenterWEB(res), new UsersRepository()).execute(
       user,
     );
   });

@@ -27,6 +27,17 @@ class UsersRepository extends DB {
     connection.close();
     return result;
   }
+
+  async findAll(payload) {
+    const connection = await this.dbConnection();
+    const result = await connection
+      .db(process.env.DATABASE)
+      .collection(this.collectionName)
+      .find(payload)
+      .toArray();
+    connection.close();
+    return result;
+  }
 }
 
 module.exports = { UsersRepository };

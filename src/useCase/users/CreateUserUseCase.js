@@ -22,6 +22,7 @@ class CreateUserUseCase {
     const user = await this.usersRepository.findByObjectID(
       objInstance.insertedId.toString(),
     );
+    console.log(user);
     delete user._id;
     delete user.password;
     return user;
