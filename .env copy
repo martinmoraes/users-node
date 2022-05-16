@@ -1,0 +1,10 @@
+#Servidor back-end
+PORT=3333
+
+#MongoDB
+MONGOCONNECT=mongodb://<<user>>:<<password>>@mongodb:27017/admin
+DATABASE=users
+
+#JWT
+PRIVATEKEY=
+EXPIRES_IN=
