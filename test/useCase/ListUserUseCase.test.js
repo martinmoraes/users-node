@@ -1,22 +1,10 @@
-const {
-  ListUserUseCase,
-} = require('../../../src/useCase/users/ListUserUseCase');
-const {
-  UsersRepository,
-} = require('../../../src/repositories/UsersRepository');
-const { PresenterConsole } = require('../../../src/presenter/presenterConsole');
+const { ListUserUseCase } = require('../../src/useCase/ListUserUseCase');
+const { UsersRepository } = require('../../src/repositories/UsersRepository');
+const { PresenterConsole } = require('../../src/presenter/presenterConsole');
 const ObjectId = require('mongodb').ObjectId;
 const sinon = require('sinon');
 
-describe('CreateUserUseCase', () => {
-  let listUserUseCase;
-  beforeEach(() => {
-    listUserUseCase = new ListUserUseCase(
-      new PresenterConsole(),
-      new UsersRepository(),
-    );
-  });
-
+describe('ListUserUseCase', () => {
   it('should return users without _id and password', async () => {
     const objetoOriginal = new UsersRepository();
     const objectStub = sinon.stub(objetoOriginal, 'findAll').returns([
@@ -37,6 +25,11 @@ describe('CreateUserUseCase', () => {
         email: 'joao@asdfg.br',
       },
     ]);
+
+    const listUserUseCase = new ListUserUseCase(
+      new PresenterConsole(),
+      objetoOriginal,
+    );
 
     const resulted = await listUserUseCase.fetchUser();
     expect(resulted).toEqual(

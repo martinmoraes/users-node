@@ -1,14 +1,11 @@
 const verifyToken = require('../../../middlewares/verifyToken');
 const { PresenterWEB } = require('../../../presenter/presenterWEB');
 const { UsersRepository } = require('../../../repositories/UsersRepository');
-const {
-  CreateUserUseCase,
-} = require('../../../useCase/users/CreateUserUseCase');
-const { ListUserUseCase } = require('../../../useCase/users/ListUserUseCase');
-const {
-  UpdateUserUseCase,
-} = require('../../../useCase/users/UpdateUserUseCase');
-const { FindUserUseCase } = require('../../../useCase/users/FindUserUseCase');
+const { CreateUserUseCase } = require('../../../useCase/CreateUserUseCase');
+const { ListUserUseCase } = require('../../../useCase/ListUserUseCase');
+const { UpdateUserUseCase } = require('../../../useCase/UpdateUserUseCase');
+const { FindUserUseCase } = require('../../../useCase/FindUserUseCase');
+const { DeleteUserUseCase } = require('../../../useCase/DeleteUserUseCase');
 
 module.exports = app => {
   const route = app.route('/users');
@@ -40,6 +37,13 @@ module.exports = app => {
   routeId.get(verifyToken, (req, res) => {
     const user_id = req.params.id;
     new FindUserUseCase(new PresenterWEB(res), new UsersRepository()).execute(
+      user_id,
+    );
+  });
+
+  routeId.delete(verifyToken, (req, res) => {
+    const user_id = req.params.id;
+    new DeleteUserUseCase(new PresenterWEB(res), new UsersRepository()).execute(
       user_id,
     );
   });

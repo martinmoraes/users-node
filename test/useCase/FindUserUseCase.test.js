@@ -1,10 +1,6 @@
-const {
-  FindUserUseCase,
-} = require('../../../src/useCase/users/FindUserUseCase');
-const {
-  UsersRepository,
-} = require('../../../src/repositories/UsersRepository');
-const { PresenterConsole } = require('../../../src/presenter/presenterConsole');
+const { FindUserUseCase } = require('../../src/useCase/FindUserUseCase');
+const { UsersRepository } = require('../../src/repositories/UsersRepository');
+const { PresenterConsole } = require('../../src/presenter/presenterConsole');
 const sinon = require('sinon');
 
 describe('FindUserUseCase', () => {

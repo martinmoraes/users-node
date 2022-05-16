@@ -1,17 +1,12 @@
-const {
-  UpdateUserUseCase,
-} = require('../../../src/useCase/users/UpdateUserUseCase');
-const {
-  UsersRepository,
-} = require('../../../src/repositories/UsersRepository');
-const { PresenterConsole } = require('../../../src/presenter/presenterConsole');
-const ObjectId = require('mongodb').ObjectId;
+const { UpdateUserUseCase } = require('../../src/useCase/UpdateUserUseCase');
+const { UsersRepository } = require('../../src/repositories/UsersRepository');
+const { PresenterConsole } = require('../../src/presenter/presenterConsole');
 const sinon = require('sinon');
 
 describe('UpdateUserUseCase', () => {
   it('should return user altered', async () => {
     const objetoOriginal = new UsersRepository();
-    sinon.stub(objetoOriginal, 'findByObjectID').returns({
+    sinon.stub(objetoOriginal, 'updateById').returns({
       acknowledged: true,
       modifiedCount: 1,
       upsertedId: null,

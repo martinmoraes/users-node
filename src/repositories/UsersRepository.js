@@ -47,7 +47,7 @@ class UsersRepository extends DB {
     return result;
   }
 
-  async update(user_id, userData) {
+  async updateById(user_id, userData) {
     const filter = { id: user_id };
     const payload = { $set: userData };
     const connection = await this.dbConnection();
@@ -55,6 +55,16 @@ class UsersRepository extends DB {
       .db(process.env.DATABASE)
       .collection(this.collectionName)
       .updateOne(filter, payload);
+    connection.close();
+    return result;
+  }
+
+  async deleteById(user_id) {
+    const connection = await this.dbConnection();
+    const result = await connection
+      .db(process.env.DATABASE)
+      .collection(this.collectionName)
+      .deleteOne({ id: user_id });
     connection.close();
     return result;
   }

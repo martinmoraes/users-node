@@ -1,22 +1,10 @@
-const {
-  CreateUserUseCase,
-} = require('../../../src/useCase/users/CreateUserUseCase');
-const {
-  UsersRepository,
-} = require('../../../src/repositories/UsersRepository');
-const { PresenterConsole } = require('../../../src/presenter/presenterConsole');
+const { CreateUserUseCase } = require('../../src/useCase/CreateUserUseCase');
+const { UsersRepository } = require('../../src/repositories/UsersRepository');
+const { PresenterConsole } = require('../../src/presenter/presenterConsole');
 const ObjectId = require('mongodb').ObjectId;
 const sinon = require('sinon');
 
 describe('CreateUserUseCase', () => {
-  let createUserUseCase;
-  beforeEach(() => {
-    createUserUseCase = new CreateUserUseCase(
-      new PresenterConsole(),
-      new UsersRepository(),
-    );
-  });
-
   it('should return user without _id and password', async () => {
     const objetoOriginal = new UsersRepository();
     sinon.stub(objetoOriginal, 'findByObjectID').returns({

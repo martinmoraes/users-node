@@ -14,7 +14,7 @@ class UpdateUserUseCase {
   }
 
   async updateUser(user_id, userData) {
-    await this.usersRepository.update(user_id, userData);
+    await this.usersRepository.updateById(user_id, userData);
     return userData;
   }
 }
