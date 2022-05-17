@@ -10,7 +10,7 @@ class CreateUserUseCase {
       const userReceived = await this.findUser(objInstance);
       this.presenter.ok(userReceived);
     } catch (error) {
-      this.presenter.fail(error);
+      this.presenter.fail(error.message);
     }
   }
 

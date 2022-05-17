@@ -9,7 +9,7 @@ class DeleteUserUseCase {
       await this.deleteUser(user_id);
       this.presenter.ok();
     } catch (error) {
-      this.presenter.fail(error);
+      this.presenter.fail(error.message);
     }
   }
 
