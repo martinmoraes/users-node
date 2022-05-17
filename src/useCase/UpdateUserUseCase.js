@@ -9,7 +9,7 @@ class UpdateUserUseCase {
       const userReceived = await this.updateUser(user_id, userData);
       this.presenter.ok(userReceived);
     } catch (error) {
-      this.presenter.fail(error);
+      this.presenter.fail(error.message);
     }
   }
 

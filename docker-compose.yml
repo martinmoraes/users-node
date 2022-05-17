@@ -3,7 +3,7 @@ version: '3'
 services:
   app:
     build: .
-    entrypoint: .docker/entrypoint.sh
+    entrypoint: docker/entrypoint.sh
     container_name: users-app
     ports:
       - '3002:3333'
@@ -11,13 +11,19 @@ services:
       - .:/home/node/app
     depends_on:
       - mongodb
+    networks:
+      - user_network
 
   mongodb:
     image: mongo:5.0
     ports:
-      - 27017:27017
+      - 27018:27017
     volumes:
       - ./data:/data/db
     environment:
       - MONGO_INITDB_ROOT_USERNAME=user
       - MONGO_INITDB_ROOT_PASSWORD=user
+    networks:
+      - user_network
+networks:
+  user_network:

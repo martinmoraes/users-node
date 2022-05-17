@@ -9,7 +9,7 @@ class ListUserUseCase {
       const usersReceived = await this.fetchUser();
       this.presenter.ok(usersReceived);
     } catch (error) {
-      this.presenter.fail(error);
+      this.presenter.fail(error.message);
     }
   }
 

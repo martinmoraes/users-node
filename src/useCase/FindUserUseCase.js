@@ -9,7 +9,7 @@ class FindUserUseCase {
       const usersReceived = await this.findUser(user_id);
       this.presenter.ok(usersReceived);
     } catch (error) {
-      this.presenter.fail(error);
+      this.presenter.fail(error.message);
     }
   }
 
