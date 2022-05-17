@@ -9,6 +9,7 @@
 ```
 $ git clone https://github.com/martinmoraes/users-node
 $ cd users-node
+$ chmod +x docker/entrypoint.sh
 $ docker-compose up
 ```
 
